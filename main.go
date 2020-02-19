@@ -11,11 +11,11 @@ import (
 	"time"
 )
 
-const defaultSeed = 6
+const words = 6
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
-	var defaultSeparators = [] string {
+	var defaultSeparators = []string{
 		"#",
 		"-",
 		"_",
@@ -24,15 +24,13 @@ func main() {
 	}
 
 	separator, ok := os.LookupEnv("SEPARATOR")
-	if !ok{
+	if !ok {
 		separator = defaultSeparators[rand.Intn(len(defaultSeparators))]
-		log.Printf(">>> Using default separator %s", separator)
 	}
 
-	seed, err := strconv.Atoi(os.Getenv("SEED_RANGE"))
+	seed, err := strconv.Atoi(os.Getenv("WORDS"))
 	if err != nil {
-		seed = defaultSeed
-		log.Printf(">>> Using default seed %d", defaultSeed)
+		seed = words
 	}
 
 	passwordResult, err := diceware.Generate(seed)
