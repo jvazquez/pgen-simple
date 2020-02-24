@@ -3,18 +3,18 @@ package main
 import (
 	"fmt"
 	"github.com/sethvargo/go-diceware/diceware"
+	"jvazquez.com/password-gen-xkcd/internal/passwordutils"
 	"log"
 	"math/rand"
 	"os"
 	"strconv"
 	"strings"
-	"time"
 )
 
 const words = 6
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
+	passwordutils.ObtainRandomSeed()
 	var defaultSeparators = []string{
 		"#",
 		"-",
